@@ -63,6 +63,7 @@ x == z      // true
 x === z    // false
 ```
 <br>
+
 **Operators**<br>
 
 ```javascript
@@ -80,7 +81,9 @@ var str = '7';
 z = +str + +Y;     // z= 14(first convert 'str' and 'Y' into Number After that perform binary addition)
 ```
 <br>
+
 **'++x' vs 'x++'**<br>
+
 ```javascript
 var x=0,y=0,a,b;
 x++;                 // x becomes 1
