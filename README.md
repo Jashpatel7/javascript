@@ -21,13 +21,13 @@ Content Which Is Important to Note related to Javascript
 **Number**<br>
   *purpose* : to store only Numeric value <br>
   *e.g.* : age, mobileNo, quantity etc. <br>
-  ```
+  ```javascript
   var age = 25; // here age variable data type is Number and it's store 25
   ```
 **String**<br>
 *purpose* : to store string type value or alphanumeric combination <br>
 *e.g.* : idNo,email etc.
-```
+```javascript
 var firstName = "Jash" // Always Use Quotes (either single or double)
 ```
 
@@ -35,7 +35,7 @@ var firstName = "Jash" // Always Use Quotes (either single or double)
 it has only two values(either false or true)<br>
 *purpose* : simply store either yes or no <br>
 *e.g.* : isEnabled, very useful when we create function<br>
-```
+```javascript
 var isButtonEnabled = true; // yes, Button is Enabled
 ```
 
@@ -43,7 +43,7 @@ var isButtonEnabled = true; // yes, Button is Enabled
 why? - When it is located at the top of a script, the whole script works the “modern” way.<br>
 
 **typeof** <br>
-```
+```javascript
 var num = 1;
 typeof num;   // Here Shows "number"
 var str = "123";
@@ -57,7 +57,7 @@ typeof x;   // Here Shows "null"
   * '=' : Assign Value.
   * '==' : Compare only values of variables
   * '===' : Compare Values as well as Types<br>
-```
+```javascript
 var x = 5, y = 7, z = '5';      // Value Assign to Respect Variables
 x == z      // true
 x === z    // false
