@@ -53,8 +53,7 @@ typeof x;   // Here Shows "null"
 ```
 <br>
 
-**'='vs'=='vs'==='**
-<br>
+# '='vs'=='vs'==='<br>
   * '=' : Assign Value.
   * '==' : Compare only values of variables
   * '===' : Compare Values as well as Types<br>
@@ -65,8 +64,7 @@ x === z    // false
 ```
 <br>
 
-**Operators**
-<br>
+# Operators<br>
 ```javascript
 var x = 5, y = 9, X='6', Y = '7';
 var z = x + y;      // z = 14
@@ -83,8 +81,7 @@ z = +str + +Y;     // z= 14(first convert 'str' and 'Y' into Number After that p
 ```
 <br>
 
-**'++x' vs 'x++'**
-<br>
+# '++x' vs 'x++'<br>
 ```javascript
 var x=0,y=0,a,b;
 x++;                 // x becomes 1
@@ -101,4 +98,5 @@ alert(++i + ++i + ++i);     // 2 + 3 + 4 = 9
 ```
 <br>
 
-**Comparisons**<br>
+# Comparisons<br>
+Result always **
