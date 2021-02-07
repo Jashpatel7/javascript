@@ -62,3 +62,39 @@ var x = 5, y = 7, z = '5';      // Value Assign to Respect Variables
 x == z      // true
 x === z    // false
 ```
+<br>
+
+**Operators**<br>
+
+```javascript
+var x = 5, y = 9, X='6', Y = '7';
+var z = x + y;      // z = 14
+var Z = X + Y;      // Z = '67' (concatenation of string)
+z = X + x + y;      // z = '659' (first parameter is String so it treats other parameter as a string)
+x = -x;             // Unary Minus (Now x = -5)
+z = x - y;         // z = -5 -9 = -14
+x = -x;            // now x = 5
+x = +x;            // Unary Plus (doen't Affect) it Not affects on numbers.
+X = +X;            // (Converts String to Number) now X = 6(not String), Unary Plus : Converts Everydatatype to Number datatype
+z = x + X;         // z = 11
+var str = '7';
+z = +str + +Y;     // z= 14(first convert 'str' and 'Y' into Number After that perform binary addition)
+```
+<br>
+
+**'++x' vs 'x++'**<br>
+
+```javascript
+var x=0,y=0,a,b;
+x++;                 // x becomes 1
+++y;                 // y becomes 1
+a = x++;             // here first a = x after x = x + 1 so, a = 1 and x = 2
+b = ++y;             // here first y = y + 1 so now y = 2 and b = y so b = 2
+
+// Check This 
+
+var i = 1;
+alert(i++ + i++ + i++);     // 1 + 2 + 3 = 6
+i = 1;
+alert(++i + ++i + ++i);     // 2 + 3 + 4 = 9
+```
