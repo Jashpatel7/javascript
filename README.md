@@ -99,4 +99,21 @@ alert(++i + ++i + ++i);     // 2 + 3 + 4 = 9
 <br>
 
 # Comparisons<br>
-Result always **
+Result always **Boolean** either true or false.
+```javascript
+var result = 5 > 4; // assign the result of the comparison
+alert( result ); // true
+
+alert('a' > 'A');  // true Because lowercase character has greater index in the internal encoding table Javascript uses(Unicode)
+```
+<br>
+
+When comparing values of different types, JavaScript converts the values to numbers.
+```javascript
+alert( '01' == 1 ); // true, string '01' becomes a number 1
+
+// Crazy consiquenences
+
+null == undefined      //true
+null === undefined     // false
+alert(null == 0)       // '==' for 'undefined' and 'null' is defined such that, without any conversions, they equal each other and don't equal anything else.
