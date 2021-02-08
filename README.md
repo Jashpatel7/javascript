@@ -120,3 +120,18 @@ alert(null == 0)       // '==' for 'undefined' and 'null' is defined such that, 
 ```
 <br>
 
+# Number Methods<br>
+first of all in Number we Can Assign Hexadecimal,Octal,binary Values Through *Number* type.<br>
+```javascript
+var hex_val = 0xff;     // 255 (Decimal Form)
+var bi_val = 0b11111111 // 255 
+var octal_val = 0o377   // 255
+
+// toString(base) method;
+var x = 128;
+var y = num.toString(16);   // Converts 128 into hexadecimal format
+
+// Math Methods;
+Math.floor(5.)   // Select Floor (Nearest Lower Integer Value)
+Mat.ceil()
+```
