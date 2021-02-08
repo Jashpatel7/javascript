@@ -117,3 +117,6 @@ alert( '01' == 1 ); // true, string '01' becomes a number 1
 null == undefined      //true
 null === undefined     // false
 alert(null == 0)       // '==' for 'undefined' and 'null' is defined such that, without any conversions, they equal each other and don't equal anything else.
+```
+<br>
+
