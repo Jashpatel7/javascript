@@ -43,7 +43,7 @@ function diff(d1, d2) {
     let yYear = d2.getFullYear();
     let diff = Math.abs(xYear - yYear);
     if (diff == 0) {
-        return console.log(`Approximately Time Difference Between ${d1} and ${d2} In terms of Months is ${Math.abs(xMonth-yMonth)+1}`);
+        return console.log(`Approximately Time Difference Between ${d1} and ${d2} In terms of Months is ${Math.abs(xMonth-yMonth)}`);
     } else {
         let total;
         total = diff * 12;
