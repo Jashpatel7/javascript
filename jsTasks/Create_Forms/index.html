@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create_Forms</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="form-box">
+
+        <form name="myForm" id="myFrm">
+            <label for="input-type">Choose Field Type: </label>
+            <select name="input-select" id="input-dropdown" onchange="showOption(this);">
+                <option value="null" disabled selected>Choose Field Type</option>
+                <option value="text">Text</option>
+                <option value="number">Number</option>
+                <option value="radio">Radio</option>
+                <option value="checkbox">Checkbox</option>
+                <option value="date">Date</option>
+                <option value="email">Email</option>
+                <option value="url">URL</option>
+                <option value="pwd">Password</option>
+            </select><br><br>
+            <p id="demo"></p><br><br>
+            <p id="demo1"></p>
+        </form>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

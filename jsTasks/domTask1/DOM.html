@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM1</title>
+    <style>
+        table,
+        th,
+        tr,
+        td {
+            border: 1px solid black;
+            border-collapse: separate;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        div.first {
+            position: relative;
+            width: 400px;
+            max-width: auto;
+            padding: 20px 50px;
+            top: 0px;
+            left: 200px;
+            transform: translateX(70%) translateY(10%);
+            border: 5px solid green;
+            display: inline-block;
+            background-color: rgba(128, 128, 128, 0.2);
+            border-radius: 15px;
+        }
+        
+        div.second {
+            position: relative;
+            width: 450px;
+            max-width: auto;
+            padding-left: 20px;
+            top: 70px;
+            left: 600px;
+            border: 5px solid green;
+            display: block;
+            background-color: rgba(128, 128, 128, 0.2);
+            border-radius: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="first">
+        <h1>Enter Details</h1>
+        <form id="myFrm" onsubmit="getDetail()">
+            <label> Enter Your First Name: </label>
+            <input type="text" id="name" required placeholder="e.g. Jash"><br><br>
+            <label> Enter Your Age: </label>
+            <input type="text" id="age" required placeholder="e.g. 21"><br><br>
+            <label> Enter Your City:</label>
+            <input type="text" id="city" required placeholder="e.g. Navsari"><br><br>
+            <label> Enter Movie Name: </label>
+            <input type="text" id="movie" required placeholder="e.g. 15 Shades of Gray"><br><br>
+            <input type="submit" value="Submit" name="submit">&nbsp;&nbsp;
+            <input type="button" value="update" name="update" onclick="updateData(this)">&nbsp;&nbsp;
+            <input type="reset" value="Reset" name="res">&nbsp;&nbsp;
+        </form><br>
+        <label>Search by:</label>
+
+        <select name="search" id="search">
+            <option value="default" disabled selected>Your Choice Required</option>
+            <option value="0">Name</option>
+            <option value="1">Age</option>
+            <option value="2">City</option>
+            <option value="3">movie</option>
+        </select>
+        <input type="text" id="search-data" placeholder="Enter Here" onkeyup="searchByName();">
+
+        <br><br>
+        <label>Sort by:</label>
+        <select id="sort">
+            <option value="default" disabled selected>Your Choice Required</option>
+            <option value="0">Name</option>
+            <option value="1">Age</option>
+            <option value="2">City</option>
+            <option value="3">Movie</option>
+
+        </select>
+    </div>
+
+    <div class="second">
+        <table id="table">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+                <th>movie</th>
+                <th>Delete</th>
+                <th>update</th>
+            </tr>
+
+        </table>
+    </div>
+    <script>
+        var arr = [];
+
+        var form = document.getElementById("myFrm");
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+        });
+
+
+        function getDetail() {
+
+            var person = {
+                name: document.getElementById("name").value,
+                age: document.getElementById("age").value,
+                city: document.getElementById("city").value,
+                movie: document.getElementById("movie").value
+            };
+            arr.push(person);
+            // console.log(arr);
+            var table = document.getElementById('table');
+            var row = table.insertRow(table.rows.length);
+            var c1 = row.insertCell(0);
+            var c2 = row.insertCell(1);
+            var c3 = row.insertCell(2);
+            var c4 = row.insertCell(3);
+            var c5 = row.insertCell(4);
+            var c6 = row.insertCell(5);
+            c1.innerHTML = arr[arr.length - 1].name;
+            c2.innerHTML = arr[arr.length - 1].age;
+            c3.innerHTML = arr[arr.length - 1].city;
+            c4.innerHTML = arr[arr.length - 1].movie;
+            c5.innerHTML = `<button type = "button " onclick = "deleteData(this) "> Delete </button>`;
+            c6.innerHTML = `<button type = "button " onclick = "updateData(this) "> update </button>`;
+            form.reset();
+        }
+
+        function deleteData(current) {
+            var index = current.parentNode.parentNode.rowIndex;
+            document.getElementById("table").deleteRow(index);
+            arr.splice(index - 1, 1);
+            console.log(arr);
+        }
+
+        function searchByName() {
+            // console.log("hello");
+            var selElement = document.getElementById("search");
+            console.log(selElement);
+            var option = getIndex(selElement);
+
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("search-data");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[Number(option.value)];
+                if (td) {
+                    txtValue = td.textContent;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function getIndex(sel) {
+            var opt;
+            for (var i = 0, len = sel.options.length; i < len; i++) {
+                opt = sel.options[i];
+                if (opt.selected === true) {
+                    break;
+                }
+            }
+            return opt;
+
+        }
+        var getRow;
+        var index;
+
+        function updateData(current) {
+            getRow = current.closest("tr").childNodes;
+            index = current.closest("tr").rowIndex - 1;
+
+            document.getElementById("name").value = getRow[0].textContent;
+            document.getElementById("age").value = getRow[1].textContent;
+            document.getElementById("city").value = getRow[2].textContent;
+            document.getElementById("movie").value = getRow[3].textContent;
+
+        }
+
+        function updateData(current) {
+            arr[index].name = getRow[0].textContent = document.getElementById("name").value;
+            arr[index].age = getRow[1].textContent = document.getElementById("age").value;
+            arr[index].city = getRow[2].textContent = document.getElementById("city").value;
+            arr[index].movie = getRow[3].textContent = document.getElementById("movie").value;
+            form.reset();
+        }
+    </script>
+</body>
+
+</html>

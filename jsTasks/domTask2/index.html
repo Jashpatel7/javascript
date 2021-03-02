@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Javascript Task2</title>
+</head>
+<style>
+    label {
+        color: red;
+        font-weight: 700;
+        font-style: italic;
+        letter-spacing: 1px;
+        margin-right: 50px;
+    }
+    
+    div {
+        border: 5px solid green;
+        margin: 50%, 50%;
+        transform: translateX(70%) translateY(50%);
+        padding: 20px 50px;
+        width: 500px;
+        height: auto;
+        border-radius: 15px;
+        background-color: rgba(128, 128, 128, 0.1);
+    }
+    
+    h1 {
+        text-align: center;
+        padding: 10px;
+        color: black;
+    }
+</style>
+
+<body>
+    <div>
+        <h1>What Do You Want To Eat</h1>
+        <label>Pick Your City: </label>
+        <select name="cities" onchange="selectCity(this.value)" id="cities">
+            <option value="default" disabled selected>Select City</option>
+            <option value="ahmedabad">Ahmedabad</option>
+            <option value="navsari">Navsari</option>
+            <option value="anand">Anand</option>
+            <option value="surat">Surat</option>
+            
+
+        </select>
+        <br>
+        <br>
+        <label>Pick Your Restaurant: </label>
+        <select name="hotels" onchange="selectRestaurant(this.value)" id="hotels" disabled>
+            <option value="default" selected>Select Restaurant</option>
+        </select>
+        <br>
+        <br>
+        <label>Pick Your Dish: </label>
+        <select name="menu" onchange="selectDish(this.value)" id="menu" disabled>
+            <option value="default" selected>Select Dish</option>
+        </select>
+        <br>
+        <br>
+        <label>You Have To Pay: </label>
+        <input type="text" id="bill" name="your_price" disabled>
+
+    </div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

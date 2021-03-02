@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM1</title>
+    <style>
+        div.first {
+            border: 5px solid green;
+            border-radius: 15px;
+            width: 400px;
+            max-width: auto;
+            padding: 10px 50px;
+            margin: 50px 100px;
+            text-align: center;
+            background-color: rgba(128, 128, 128, 0.1);
+            display:
+        }
+        
+        table,
+        th,
+        tr,
+        td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        
+        th {
+            font-size: 13pt;
+            font-weight: 700;
+        }
+        
+        tr {
+            font-size: 12pt;
+            font-weight: 500;
+        }
+        
+        label {
+            font-weight: 600;
+            padding-right: 20px;
+        }
+        
+        input {
+            padding: 5px;
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="first">
+        <h1>General Form</h1>
+        <form id="myform" onsubmit="getDetail()">
+            <label> Name </label>
+            <input type="text" id="name" required><br><br>
+            <label> Age </label>
+            <input type="text" id="age" required><br><br>
+            <label>City</label>
+            <input type="text" id="city" required><br><br>
+            <label> Movie </label>
+            <input type="text" id="movie" required><br><br>
+            <input type="submit" value="Submit" name="submit">
+            <input type="button" value="Update" name="update" onclick="updateData(this)">
+
+        </form>
+        <br><br>
+
+        <label>Search by:</label>
+
+        <select name="search" id="search-option">
+        <option value="default" selected>Select Choice</option>
+        <option value="0">Name</option>
+        <option value="1">Age</option>
+        <option value="2">City</option>
+        <option value="3">Movie</option>
+
+        </select>
+        <input type="text" id="search-data" placeholder="e.g. Name" onkeyup="searchByName();">
+
+        <br><br>
+        <label>Sort by:</label>
+        <select id="sort" name="sortField" onchange="sortData()">
+        <option value="default" selected>Select Choice</option>
+        <option value="name">Name</option>
+        <option value="age">Age</option>
+        <option value="city">City</option>
+        <option value="movie">Movie</option>
+
+    </select>
+        <br><br>
+    </div>
+    <div class="second">
+        <table id="table">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+                <th>Movie</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+
+        </table>
+    </div>
+
+    <script>
+        var arr = [];
+
+        var form = document.getElementById("myform");
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+        });
+
+
+        function getDetail() {
+
+            var person = {
+                name: document.getElementById("name").value,
+                age: document.getElementById("age").value,
+                city: document.getElementById("city").value,
+                movie: document.getElementById("movie").value
+            };
+            arr.push(person);
+            // console.log(arr);
+            var table = document.getElementById('table');
+            var row = table.insertRow(table.rows.length);
+            var c1 = row.insertCell(0);
+            var c2 = row.insertCell(1);
+            var c3 = row.insertCell(2);
+            var c4 = row.insertCell(3);
+            var c5 = row.insertCell(4);
+            var c6 = row.insertCell(5);
+            c1.innerHTML = arr[arr.length - 1].name;
+            c2.innerHTML = arr[arr.length - 1].age;
+            c3.innerHTML = arr[arr.length - 1].city;
+            c4.innerHTML = arr[arr.length - 1].movie;
+            c5.innerHTML = `<button type = "button " onclick = "deleteData(this) "> Delete </button>`;
+            c6.innerHTML = `<button type = "button " onclick = "editData(this) "> Edit </button>`;
+            form.reset();
+        }
+
+        function deleteData(current) {
+            var index = current.parentNode.parentNode.rowIndex;
+            document.getElementById("table").deleteRow(index);
+            arr.splice(index - 1, 1);
+            console.log(arr);
+        }
+
+        function searchByName() {
+            var selElement = document.getElementById("search-option");
+            console.log(selElement);
+            var option = getIndex(selElement);
+
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("search-data");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[Number(option.value)];
+                if (td) {
+                    txtValue = td.textContent;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function getIndex(sel) {
+            var opt;
+            for (var i = 0, len = sel.options.length; i < len; i++) {
+                opt = sel.options[i];
+                if (opt.selected === true) {
+                    break;
+                }
+            }
+            return opt;
+
+        }
+        var getRow;
+        var index;
+
+        function editData(current) {
+            getRow = current.closest("tr").childNodes;
+            index = current.closest("tr").rowIndex - 1;
+
+            document.getElementById("name").value = getRow[0].textContent;
+            document.getElementById("age").value = getRow[1].textContent;
+            document.getElementById("city").value = getRow[2].textContent;
+            document.getElementById("movie").value = getRow[3].textContent;
+
+
+        }
+
+        function updateData(current) {
+            arr[index].name = getRow[0].textContent = document.getElementById("name").value;
+            arr[index].age = getRow[1].textContent = document.getElementById("age").value;
+            arr[index].city = getRow[2].textContent = document.getElementById("city").value;
+            arr[index].movie = getRow[3].textContent = document.getElementById("movie").value;
+            form.reset();
+        }
+
+        function sortData() {
+            let sortFieldValue = document.getElementById("sort").value;
+
+            if (sortFieldValue == "age") {
+                arr.sort(function(a, b) {
+                    let x = a[sortFieldValue];
+                    let y = b[sortFieldValue]; {
+                        return x - y;
+                    }
+                });
+            } else {
+                arr.sort(function(a, b) {
+                    let x = a[sortFieldValue].toUpperCase();
+                    let y = b[sortFieldValue].toUpperCase();
+
+                    if (x < y) {
+                        return -1;
+                    }
+                    if (x > y) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
+            console.log(arr);
+
+            displaySortedTable();
+        }
+
+        function displaySortedTable() {
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+
+            for (let i = 0; i < arr.length; i++) {
+                let row = table.insertRow(i + 1);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                let cell3 = row.insertCell(2);
+                let cell4 = row.insertCell(3);
+                let
+                    cell5 = row.insertCell(4);
+                let cell6 = row.insertCell(5);
+                console.log(arr[i]);
+                cell1.innerHTML = arr[i].name;
+                console.log(cell1.innerHTML);
+                cell2.innerHTML = arr[i].age;
+                cell3.innerHTML = arr[i].city;
+                cell4.innerHTML = arr[i].movie;
+                cell5.innerHTML = `<button type="button " onclick="deleteData(this) "> Delete </button>`;
+                cell6.innerHTML = `<button type="button " onclick="editData(this) "> Edit </button>`;
+                form.reset();
+            }
+        }
+    </script>
+</body>
+
+</html>
